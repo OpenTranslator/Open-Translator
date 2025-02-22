@@ -185,11 +185,22 @@ result = crew.crew().kickoff(inputs={
 ```
 
 ## Run the translator from the command line
-
+## Basic ssage
 ```bash
 python translator.py --task "Translate the book 'Great Expectations' into Bengali" --src-lang en --tgt-lang bn --apikey YOUR_API_KEY
 ```
+## With advanced options
 
+```python
+python translator.py \
+    --task "Translate the technical document" \
+    --src-lang en \
+    --tgt-lang bn \
+    --input-file docs/manual.pdf \
+    --output-dir output/translations \
+    --domain technical \
+    --verbose
+```
 For interactive use or to adjust agent parameters, please refer to our [User Guide](docs/USER_GUIDE.md).
 
 ## 📚 Example Use Cases
