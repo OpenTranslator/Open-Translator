@@ -1,0 +1,43 @@
+sequenceDiagram
+    participant U as User
+    participant O as Organizer Agent
+    participant S as Source Collector
+    participant E as Executor Agent
+    participant V as Validator Agent
+    participant ED as Editor Agent
+
+    U->>O: Submit Translation Task
+    activate O
+    O->>O: Analyze & Segment Document
+    
+    par Parallel Process
+        O->>S: Request Resources
+        activate S
+        S->>S: Collect Domain Resources
+        S-->>E: Send Context & Glossaries
+        deactivate S
+        
+        O->>E: Send Segments
+        activate E
+    end
+
+    loop For Each Segment
+        E->>E: Translate Segment
+        E->>V: Submit Translation
+        activate V
+        V->>V: Validate Quality
+        
+        alt Translation Meets Quality
+            V->>ED: Send for Polishing
+            activate ED
+        else Needs Improvement
+            V-->>E: Return for Revision
+        end
+        deactivate V
+    end
+    deactivate E
+
+    ED->>ED: Post-process & Merge
+    ED-->>U: Return Final Translation
+    deactivate ED
+    deactivate O

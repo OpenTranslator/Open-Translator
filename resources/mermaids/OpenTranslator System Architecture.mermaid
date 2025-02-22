@@ -1,0 +1,43 @@
+flowchart TB
+    subgraph User["User Interface"]
+        UI[Web Interface]
+        CLI[Command Line]
+        API[REST API]
+    end
+
+    subgraph Core["Core System"]
+        direction TB
+        Orchestrator["Central Orchestrator"]
+        
+        subgraph Agents["Translation Agents"]
+            direction TB
+            OA["Organizer Agent"]
+            SCA["Source Collector Agent"]
+            EA["Executor Agent"]
+            VA["Validator Agent"]
+            EDA["Editor Agent"]
+        end
+        
+        subgraph Resources["Resource Management"]
+            TM["Translation Memory"]
+            Glossary["Domain Glossaries"]
+            Cache["Context Cache"]
+        end
+        
+        subgraph Models["Translation Models"]
+            LLM["Language Models"]
+            CustomModels["Fine-tuned Models"]
+        end
+    end
+
+    subgraph Storage["Storage Layer"]
+        DB[(Translation DB)]
+        FileStore["File Storage"]
+    end
+
+    User --> Orchestrator
+    Orchestrator --> Agents
+    Agents --> Resources
+    Agents --> Models
+    Resources --> Storage
+    Models --> Storage
