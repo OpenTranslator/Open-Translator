@@ -1,0 +1,46 @@
+# Translation Tasks Configuration
+
+document_analysis:
+  description: >
+    Analyze the {domain} document in {source_language} and prepare it for translation to {target_language}.
+    Consider document structure, context boundaries, and optimal segmentation strategy.
+  expected_output: >
+    Document analysis report with segmentation plan and identified contextual elements.
+  agent: organizer
+  output_file: analysis.json
+
+resource_collection:
+  description: >
+    Collect relevant translation resources for {domain} content from {source_language} to {target_language}.
+    Include domain-specific terminology, style guides, and translation memories.
+  expected_output: >
+    Compiled resources including glossaries, reference materials, and translation memories.
+  agent: source_collector
+  output_file: resources.json
+
+translation_execution:
+  description: >
+    Translate the segmented content from {source_language} to {target_language},
+    maintaining consistency and accuracy throughout the document.
+  expected_output: >
+    Translated segments with metadata for context and terminology choices.
+  agent: executor
+  output_file: translations.json
+
+quality_validation:
+  description: >
+    Validate the translation quality using automated metrics and linguistic checks.
+    Ensure consistency in terminology and style across all segments.
+  expected_output: >
+    Validation report with quality metrics and identified issues.
+  agent: validator
+  output_file: validation.json
+
+final_editing:
+  description: >
+    Polish and refine the validated translations, ensuring natural flow and
+    cultural appropriateness in {target_language}.
+  expected_output: >
+    Final edited translation with formatting and style consistent with {domain} standards.
+  agent: editor
+  output_file: final_translation.md

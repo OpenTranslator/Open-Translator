@@ -164,9 +164,27 @@ cd Open-Translator
 pip install -r requirements.txt
 ```
 
-### Usage
+### Setup Environment Variables
+```bash
+export OPENAI_API_KEY=your_key_here
+```
 
-Run the translator from the command line:
+### Usage
+## Run a translation
+
+```python
+from opentranslator import TranslationCrew
+
+crew = TranslationCrew()
+result = crew.crew().kickoff(inputs={
+    "source_language": "en",
+    "target_language": "bn",
+    "domain": "literary",
+    "document_path": "my_document.pdf"
+})
+```
+
+## Run the translator from the command line
 
 ```bash
 python translator.py --task "Translate the book 'Great Expectations' into Bengali" --src-lang en --tgt-lang bn --apikey YOUR_API_KEY
